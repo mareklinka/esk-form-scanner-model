@@ -23,12 +23,12 @@ def generate_examples(original, target_folder, count):
 def __rotate_image(example):
     while True:
         angle = math.floor(random.uniform(0, 2)) * 180 + random.uniform(-10, 10)
-        example = example.rotate(angle)
+        result = example.rotate(angle)
 
-        corners = __find_corners(example)
+        corners = __find_corners(result)
 
         if len(corners) > 0:
-            return example, corners
+            return result, corners
 
 def __find_corners(image):
     a = np.array(image).T
