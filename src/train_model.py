@@ -1,6 +1,7 @@
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
+from keras.callbacks import TensorBoard
 import data_providers as gen
 import model_storage
 
@@ -49,6 +50,8 @@ def train(trainig_data_path):
 
     model.summary()
 
-    model.fit_generator(gen.training_data(trainig_data_path), epochs=40, steps_per_epoch=100)
+    tbCallback = TensorBoard(log_dir='./TB', histogram_freq=0, write_graph=True, write_images=True)
+
+    model.fit_generator(gen.training_data(trainig_data_path), epochs=40, steps_per_epoch=200, callbacks=[tbCallback])
 
     model_storage.save_model(model, "current_model")
