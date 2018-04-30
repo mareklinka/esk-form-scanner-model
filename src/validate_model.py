@@ -4,7 +4,17 @@ import model_storage as storage
 import numpy as np
 import data_visualizer
 
-def validate(model_name):
+def evaluate(model_name):
+    """
+    Evaluates the model stored in the specified file.
+
+    Parameters
+    ----------
+
+    model_name : string
+        The name of the file to read a the model from
+    """
+
     model = storage.load_model(model_name)
 
     model.summary()

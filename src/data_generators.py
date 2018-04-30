@@ -5,6 +5,19 @@ from os.path import join
 import numpy as np
 
 def generate_examples(original, target_folder, count):
+    """
+    Generates a batch of training examples
+    
+    Parameters
+    ----------
+    original : string
+        Path to the image to use as the source image
+    target_folder : string
+        Path to the folder to store the generated examples in
+    count : int
+        Number of examples to generate
+    """
+    
     template = Image.open(original).convert("RGB")
 
     for i in range(count):

@@ -25,7 +25,7 @@
 ## The Complications
 
 * OCR is a well researched topic, but this is not a classic OCR problem
-* Unless you want to feed the whole image into OCR, you want to find the region to scan
+* Unless you want to feed the whole image into OCR, you want to find the region to scan first
 * What about if the user takes the picture upside down or with perspective distortion?
 * What if the image is low quality/bad lighting?
 
@@ -135,7 +135,7 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 
 ## Image detection and localization
 
-* In these tasks, the algorithm looks at a picture and tried to figure out what's in it
+* In these tasks, the algorithm looks at a picture and tries to figure out what's in it
     * Maybe there is a car and a traffic light and another car and a guy
     * We also want to know exactly _where_ these objects are, using a bounding box
 
@@ -149,7 +149,7 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 
 ## So we want to find stuff
 
-* Our problem is an image localization problem - we are searching for a specific thing and want to know where it is in the picture
+* Our problem is a localization problem - we are searching for a specific thing and want to know where it is in the picture
 * Object localization is a supervised learning problem
     * We give the algorithm images and correct answers (called _labels_)
     * It will try to learn the relationship between the image and the answer
@@ -211,7 +211,7 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 
 ## Sliding window detector
 
-* Sliding window detector repurposes an object classificatio network into a detector
+* Sliding window detector repurposes an object classification network into a detector
 * It moves a _window_ over an image and feeds the window's content into a classifier
 * If the classifier says "yes, this is a thing", you have found a thing
 * There are various issues with this approach (such as performance and object sizing)
@@ -372,6 +372,25 @@ which is _less than a pixel per coordinate_
     * Most datasets will not fit into RAM
     * This requires training sequentially on batches that can fit
 
+----
+
+## Hardware - CPU
+
+* Intel Core i7 3770k
+    * 4.0 GHz base clock (OC'd)
+* 20 GB of DDR3 RAM
+    * 2166 Hz clock
+
+----
+
+## Hardware - GPU
+
+* nVidia GeForce 1080Ti
+    * 1582 MHz
+    * 11 GB of GDDR5X memory (352-bit bus)
+    * 3584 CUDA cores
+    * 250 W power consumption under full load
+
 ---
 
 ## So now you have a model
@@ -402,7 +421,7 @@ which is _less than a pixel per coordinate_
 
 * Machine learning is often more art than science
 * You must be able to iterate ideas quickly to evaluate them
-    * When inspirations strikes, you don't want to spend time tweaking 573 constants somewhere
+    * When inspiration strikes, you don't want to spend time tweaking 573 constants somewhere
 * Keras and similar frameworks make this easy by abstracting a lot of the complexities
 
 ---

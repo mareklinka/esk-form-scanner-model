@@ -7,6 +7,17 @@ import random
 import itertools
 
 def training_data(folder_path):
+    """
+    Returns an endless generator of training data from the specified folder.
+    Examples are permuted randomly between passes.
+
+    Parameters
+    ----------
+
+    folder_path : string
+        The path to a folder to read training examples from
+    """
+
     batch_size = 5
     images = [join(folder_path, f) for f in listdir(folder_path) if isfile(join(folder_path, f)) & f.endswith('.jpg') ]
     labels = [join(folder_path, f) for f in listdir(folder_path) if isfile(join(folder_path, f)) & f.endswith('.txt') ]
@@ -35,6 +46,17 @@ def training_data(folder_path):
         yield X_train, Y_train
 
 def validation_data(folder_path):
+    """
+    Returns a generator of validation data from the specified folder.
+    The generator will return all examples in the folder once, then exit.
+
+    Parameters
+    ----------
+
+    folder_path : string
+        The path to a folder to read training examples from
+    """
+
     batch_size = 5
     images = [join(folder_path, f) for f in listdir(folder_path) if isfile(join(folder_path, f)) & f.endswith('.jpg') ]
     labels = [join(folder_path, f) for f in listdir(folder_path) if isfile(join(folder_path, f)) & f.endswith('.txt') ]
@@ -61,6 +83,18 @@ def validation_data(folder_path):
         yield X, Y
 
 def __split_list(list, chunk_size):
+    """
+    Splits the provided list into chunks of a specific size.
+
+    Parameters
+    ----------
+
+    list : list
+        The list to split into chunks
+    chunk_size : int
+        The size of a chunk
+    """
+    
     return [list[offs:offs+chunk_size] for offs in range(0, len(list), chunk_size)]
 
 def __shuffle_in_unison(a, b):

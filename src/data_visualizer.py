@@ -4,6 +4,20 @@ from os import listdir
 import re
 
 def draw_bounding_boxes(folder, predictions, output_folder):
+    """
+    Draws true and predicted bounding boxes into images in the specified folder.
+
+    Parameters
+    ----------
+
+    folder : string
+        The folder to read source images from
+    predictions : NumPy array
+        The predicted bounding boxes produced by the ML model
+    output_folder : string
+        The folder to store the images with bouding boxes drawn
+    """
+
     images = [join(folder, f) for f in listdir(folder) if isfile(join(folder, f)) & f.endswith('.jpg') ]
     labels = [join(folder, f) for f in listdir(folder) if isfile(join(folder, f)) & f.endswith('.txt') ]
 

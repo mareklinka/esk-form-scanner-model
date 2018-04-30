@@ -23,4 +23,4 @@ elif args.action[0] == "data_val":
 elif args.action[0] == "train":
     train_model.train("data\\training")
 elif args.action[0] == "eval":
-    validate_model.validate(args.model_name[0])
+    validate_model.evaluate(args.model_name[0])

@@ -5,6 +5,16 @@ import data_providers as gen
 import model_storage
 
 def train(trainig_data_path):
+    """
+    Trains a new model.
+
+    Parameters
+    ----------
+
+    trainig_data_path : string
+        The path to a folder with training data
+    """
+
     model = Sequential()
     model.add(Conv2D(256, (3, 3), strides=(2,2), input_shape=(847, 1200, 3)))
     model.add(Activation('relu'))
