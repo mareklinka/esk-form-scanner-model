@@ -12,7 +12,7 @@ def evaluate(model_name):
     ----------
 
     model_name : string
-        The name of the file to read a the model from
+        The name of the file to read the model from
     """
 
     model = storage.load_model(model_name)
@@ -25,5 +25,5 @@ def evaluate(model_name):
     print (score)
 
 
-    predictions = model.predict_generator(gen.validation_data("data\\validation"), steps=3)
+    predictions = model.predict_generator(gen.validation_data("data\\validation"), steps=10)
     data_visualizer.draw_bounding_boxes("data\\validation", predictions, "data\\results")
