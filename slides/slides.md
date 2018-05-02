@@ -448,3 +448,13 @@ which is _less than a pixel per coordinate_
 
 * What issues do you see in the form scanner implementation?
     * Hint: there are many
+
+---
+
+## Resources
+
+* Machine Learning @ Corsera
+* Deep Learning @ Coursera
+* Deep Learning with Keras
+* The Interwebs/GitHub/StackOverflow etc.
+* The greatest of learning tools, trial and error
