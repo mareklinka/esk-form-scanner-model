@@ -5,6 +5,7 @@ import numpy as np
 import re
 import random
 import itertools
+import constants as c
 
 def training_data(folder_path):
     """
@@ -18,20 +19,19 @@ def training_data(folder_path):
         The path to a folder to read training examples from
     """
 
-    batch_size = 5
     images = [join(folder_path, f) for f in listdir(folder_path) if isfile(join(folder_path, f)) & f.endswith('.jpg') ]
     labels = [join(folder_path, f) for f in listdir(folder_path) if isfile(join(folder_path, f)) & f.endswith('.txt') ]
 
     i = 0
     while True:
-        X_train = np.empty((5, 847, 1200, 3), dtype="float")
-        Y_train = np.empty((5, 8))
+        X_train = np.empty((c.batch_size, c.image_height, c.image_width, 3), dtype="float")
+        Y_train = np.empty((c.batch_size, c.prediction_size))
 
-        for b in range(batch_size):
+        for b in range(c.batch_size):
             if i == len(images):
                 i = 0
                 __shuffle_in_unison(images, labels)
-            image = load_img(images[i], target_size=(847,1200))
+            image = load_img(images[i], target_size=(c.image_height,c.image_width))
             img_array = img_to_array(image)
             img_array = img_array.reshape((1,) + img_array.shape)
 
@@ -57,19 +57,18 @@ def validation_data(folder_path):
         The path to a folder to read training examples from
     """
 
-    batch_size = 5
     images = [join(folder_path, f) for f in listdir(folder_path) if isfile(join(folder_path, f)) & f.endswith('.jpg') ]
     labels = [join(folder_path, f) for f in listdir(folder_path) if isfile(join(folder_path, f)) & f.endswith('.txt') ]
 
     tuples = list(zip(images, labels))
 
-    for batch in __split_list(tuples, batch_size):
-        X = np.empty((5, 847, 1200, 3), dtype="float")
-        Y = np.empty((5, 8))
+    for batch in __split_list(tuples, c.batch_size):
+        X = np.empty((c.batch_size, c.image_height, c.image_width, 3), dtype="float")
+        Y = np.empty((c.batch_size, c.prediction_size))
 
         b = 0
         for x, y in batch:
-            image = load_img(x, target_size=(847,1200))
+            image = load_img(x, target_size=(c.image_width,c.image_height))
             img_array = img_to_array(image)
             img_array = img_array.reshape((1,) + img_array.shape)
 

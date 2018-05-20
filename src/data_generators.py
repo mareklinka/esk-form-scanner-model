@@ -35,7 +35,7 @@ def generate_examples(original, target_folder, count):
 
 def __rotate_image(example):
     while True:
-        angle = math.floor(random.uniform(0, 2)) * 180 + random.uniform(-10, 10)
+        angle = math.floor(random.uniform(0, 4)) * 90 + random.uniform(-10, 10)
         result = example.rotate(angle)
 
         corners = __find_corners(result)
