@@ -1,10 +1,11 @@
 from PIL import Image, ImageDraw
 import random
 import math
-from os.path import join
+from os import listdir
+from os.path import isfile, join
 import numpy as np
 
-def generate_examples(original, target_folder, count):
+def generate_examples(original_folder, target_folder, count):
     """
     Generates a batch of training examples
     
@@ -17,11 +18,16 @@ def generate_examples(original, target_folder, count):
     count : int
         Number of examples to generate
     """
-    
-    template = Image.open(original).convert("RGB")
+
+    originals = [join(original_folder, f) for f in listdir(original_folder) if isfile(join(original_folder, f)) & f.endswith('.png')]
+    counts = [0 for f in originals]
 
     for i in range(count):
-        example = template.copy()
+        index = random.randint(0, len(originals) - 1)
+        original = originals[index]
+        counts[index] = counts[index] + 1
+
+        example = Image.open(original).convert("RGB")
 
         example, corners = __rotate_image(example)
 
@@ -32,6 +38,7 @@ def generate_examples(original, target_folder, count):
         with open(join(target_folder, f"i{i}.txt"), "w") as label:
             for x,y in corners:
                 label.write(f"{x},{y} ")
+    print(counts)
 
 def __rotate_image(example):
     while True:

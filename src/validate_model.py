@@ -19,10 +19,10 @@ def evaluate(model_name):
 
     model.summary()
 
-    score = model.evaluate_generator(gen.validation_data("data\\validation"), steps=6)
+    score = model.evaluate_generator(gen.validation_data("data\\validation"), steps=12)
 
     print (model.metrics_names)
     print (score)
 
-    predictions = model.predict_generator(gen.validation_data("data\\validation"), steps=6)
+    predictions = model.predict_generator(gen.validation_data("data\\validation"), steps=12)
     data_visualizer.draw_bounding_boxes("data\\validation", predictions, "data\\results")
