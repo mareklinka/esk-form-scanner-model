@@ -19,34 +19,31 @@ def train(trainig_data_path):
     """
 
     model = Sequential()
-    model.add(Conv2D(192, (5, 5), strides=(2,2), input_shape=(c.image_height, c.image_width, 3)))
+    model.add(Conv2D(64, (5, 5), strides=(2,2), input_shape=(c.image_height, c.image_width, 3)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(384, (5, 5),strides=(2,2)))
+    model.add(Conv2D(128, (5, 5),strides=(2,2)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(512, (3, 3),strides=(2,2)))
+    model.add(Conv2D(192, (3, 3)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(768, (3, 3)))
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    model.add(Conv2D(1024, (3, 3)))
+    model.add(Conv2D(256, (3, 3)))
+    model.add(BatchNormalization())
     model.add(Activation('relu'))
 
     model.add(Flatten())
 
-    model.add(Dense(4096))
-    model.add(BatchNormalization())
+    model.add(Dense(192))
+    
+    #model.add(BatchNormalization())
     model.add(Activation('relu'))
-
     model.add(Dense(c.prediction_size))
 
     model.compile(loss='mae', optimizer='adam', metrics=['mae'])
