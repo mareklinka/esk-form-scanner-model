@@ -30,6 +30,7 @@ def train(trainig_data_path):
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
     model.add(Conv2D(512, (3, 3),strides=(2,2)))
+    model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
