@@ -17,9 +17,9 @@ os.makedirs("data\\validation", exist_ok=True)
 os.makedirs("data\\results", exist_ok=True)
 
 if args.action[0] == "data_train":
-    data_generators.generate_examples(args.original_path[0], "data\\training", args.count[0])
+    data_generators.generate_examples(args.original_path[0], "data\\training", args.count[0], True)
 elif args.action[0] == "data_val":
-    data_generators.generate_examples(args.original_path[0], "data\\validation", args.count[0])
+    data_generators.generate_examples(args.original_path[0], "data\\validation", args.count[0], False)
 elif args.action[0] == "train":
     train_model.train("data\\training")
 elif args.action[0] == "eval":

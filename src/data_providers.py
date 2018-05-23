@@ -31,7 +31,7 @@ def training_data(folder_path):
             if i == len(images):
                 i = 0
                 __shuffle_in_unison(images, labels)
-            image = load_img(images[i], target_size=(c.image_height,c.image_width))
+            image = load_img(images[i], target_size=(c.image_height,c.image_width), grayscale=True)
             img_array = img_to_array(image)
             img_array = img_array.reshape((1,) + img_array.shape)
 
@@ -68,7 +68,7 @@ def validation_data(folder_path):
 
         b = 0
         for x, y in batch:
-            image = load_img(x, target_size=(c.image_width,c.image_height))
+            image = load_img(x, target_size=(c.image_width,c.image_height), grayscale=True)
             img_array = img_to_array(image)
             img_array = img_array.reshape((1,) + img_array.shape)
 

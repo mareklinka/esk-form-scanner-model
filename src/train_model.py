@@ -19,22 +19,22 @@ def train(trainig_data_path):
     """
 
     model = Sequential()
-    model.add(Conv2D(64, (5, 5), strides=(2,2), input_shape=(c.image_height, c.image_width, 3)))
+    model.add(Conv2D(32, (5, 5), strides=(2,2), input_shape=(c.image_height, c.image_width, 3)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(128, (5, 5),strides=(2,2)))
+    model.add(Conv2D(64, (5, 5),strides=(2,2)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(192, (3, 3)))
+    model.add(Conv2D(96, (3, 3)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    model.add(Conv2D(256, (3, 3)))
+    model.add(Conv2D(128, (3, 3)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
 
@@ -42,7 +42,7 @@ def train(trainig_data_path):
 
     model.add(Dense(192))
     
-    #model.add(BatchNormalization())
+    # model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dense(c.prediction_size))
 
