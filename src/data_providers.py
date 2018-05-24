@@ -7,7 +7,7 @@ import random
 import itertools
 import constants as c
 
-def training_data(folder_path):
+def infinite_generator(folder_path):
     """
     Returns an endless generator of training data from the specified folder.
     Examples are permuted randomly between passes.
@@ -45,7 +45,7 @@ def training_data(folder_path):
 
         yield X_train, Y_train
 
-def validation_data(folder_path):
+def finite_generator(folder_path):
     """
     Returns a generator of validation data from the specified folder.
     The generator will return all examples in the folder once, then exit.

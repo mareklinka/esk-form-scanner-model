@@ -1,16 +1,22 @@
-import data_generators
-import os
 import argparse
-import train_model
-import validate_model
+import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--action", "-a", action="store", nargs=1, choices=["data_train", "data_val", "train", "eval"], required=True, dest="action")
 parser.add_argument("--original", "-o", action="store", nargs=1, required=False, dest="original_path")
 parser.add_argument("--modelname", "-m", action="store", nargs=1, required=False, dest="model_name")
 parser.add_argument("--count", "-c", action="store", nargs=1, type=int, required=False, dest="count")
+parser.add_argument("--cpu-only", "-cpu", action="store_true", required=False, default=False, dest="cpu")
 
 args = parser.parse_args()
+
+if args.cpu:
+    os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID" 
+    os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+import data_generators
+import train_model
+import validate_model
 
 os.makedirs("data\\training", exist_ok=True)
 os.makedirs("data\\validation", exist_ok=True)
