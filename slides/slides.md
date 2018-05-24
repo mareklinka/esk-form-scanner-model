@@ -4,7 +4,7 @@
 
 ---
 
-## The Task
+# The Task
 -----
 
 ----
@@ -122,14 +122,7 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 
 ----
 
-## Example
-
-[add]
-
-![](http://www.catster.com/wp-content/uploads/2017/08/A-fluffy-cat-looking-funny-surprised-or-concerned.jpg)
-![](https://i.imgur.com/7R9SMwF.jpg)
-![](https://images.media-allrecipes.com/userphotos/465x465/3759440.jpg)
-![](https://a-static.projektn.sk/2018/04/2018-04-24-MinisterkaSakova-1000x630.jpg)
+![](images/classification.png)
 
 ----
 
@@ -234,8 +227,6 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 
 ----
 
-## Example
-
 ![](https://ai2-s2-public.s3.amazonaws.com/figures/2016-11-08/21a1654b856cf0c64e60e58258669b374cb05539/2-Figure3-1.png)
 
 ----
@@ -260,12 +251,6 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 * The network consists of several convolutional layers (feature extractors), followed by a shallow fully connected network (regression calculator)
 * The output layer has 8 neurons, each outputting a coordinate X/Y of the bounding box
 * In total, the network has ~15m trainable parameters
-
-----
-
-## The form-scanner net
-
-[add image]
 
 ----
 
@@ -301,7 +286,7 @@ Did I talk about: Keras, Tensorflow, python generators, regularization, epochs, 
 * Training set size: 350
 * Epochs: 40
 * Time per epoch: 21s
-* Trainable parameters: [add]
+* Trainable parameters: ~ 15m
 * Total time: 14 minutes
 * Final training accuracy: 61.0%
 * Final training loss: 118
@@ -313,7 +298,7 @@ Did I talk about: Keras, Tensorflow, python generators, regularization, epochs, 
 * Training set size: 500
 * Epochs: 40
 * Time per epoch: 30s
-* Trainable parameters: [add]
+* Trainable parameters: ~ 15m
 * Total time: 20 minutes
 * Final training accuracy: 77.4%
 * Final training loss: 38.6
@@ -330,9 +315,8 @@ Did I talk about: Keras, Tensorflow, python generators, regularization, epochs, 
 ----
 
 ## MSE loss
-[todo: check equation]
 $$MSE(m) \\\\\\
-= \frac{\sum\limits_{m}{|(A - A'| + |B - B'| + |C - C'| + |D - D'|)^2}}{||m||} \\\\\\
+= \frac{\sum\limits_{m}{(|A - A'| + |B - B'| + |C - C'| + |D - D'|)^2}}{||m||} \\\\\\
 = 39$$
 
 ----
@@ -453,7 +437,7 @@ which is _less than a pixel per coordinate_
 
 ## Resources
 
-* Machine Learning @ Corsera
+* Machine Learning @ Coursera
 * Deep Learning @ Coursera
 * Deep Learning with Keras
 * The Interwebs/GitHub/StackOverflow etc.
