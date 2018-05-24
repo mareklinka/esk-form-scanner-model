@@ -7,7 +7,7 @@ import random
 import itertools
 import constants as c
 
-def training_data(folder_path):
+def infinite_generator(folder_path):
     """
     Returns an endless generator of training data from the specified folder.
     Examples are permuted randomly between passes.
@@ -31,7 +31,7 @@ def training_data(folder_path):
             if i == len(images):
                 i = 0
                 __shuffle_in_unison(images, labels)
-            image = load_img(images[i], target_size=(c.image_height,c.image_width))
+            image = load_img(images[i], target_size=(c.image_height,c.image_width), grayscale=True)
             img_array = img_to_array(image)
             img_array = img_array.reshape((1,) + img_array.shape)
 
@@ -45,7 +45,7 @@ def training_data(folder_path):
 
         yield X_train, Y_train
 
-def validation_data(folder_path):
+def finite_generator(folder_path):
     """
     Returns a generator of validation data from the specified folder.
     The generator will return all examples in the folder once, then exit.
@@ -68,7 +68,7 @@ def validation_data(folder_path):
 
         b = 0
         for x, y in batch:
-            image = load_img(x, target_size=(c.image_width,c.image_height))
+            image = load_img(x, target_size=(c.image_width,c.image_height), grayscale=True)
             img_array = img_to_array(image)
             img_array = img_array.reshape((1,) + img_array.shape)
 

@@ -4,8 +4,9 @@ import math
 from os import listdir
 from os.path import isfile, join
 import numpy as np
+import constants as c
 
-def generate_examples(original_folder, target_folder, count):
+def generate_examples(original_folder, target_folder, count, add_noise):
     """
     Generates a batch of training examples
     
@@ -34,6 +35,9 @@ def generate_examples(original_folder, target_folder, count):
         for x,y in corners:
             example.putpixel((x ,y), (0, 0, 0))
 
+        if add_noise:
+            example = __apply_noise(example)
+
         example.save(join(target_folder, f"i{i}.jpg"), "JPEG")
         with open(join(target_folder, f"i{i}.txt"), "w") as label:
             for x,y in corners:
@@ -61,3 +65,12 @@ def __find_corners(image):
         return ()
 
     return (upper_left[0], lower_left[0], upper_right[0], lower_right[0])
+
+def __apply_noise(image):
+    a = np.array(image)
+    noise = np.random.rand(image.height, image.width)
+    noise = noise < c.noise_ratio
+
+    a[noise] = 0
+
+    return Image.fromarray(a)
