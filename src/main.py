@@ -13,6 +13,15 @@ args = parser.parse_args()
 if args.cpu:
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID" 
     os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+else:
+    # this will prevent TF from allocating the whole GPU
+    from keras import backend as K
+    import tensorflow as tf
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth=True
+    sess = tf.Session(config=config)
+    K.set_session(sess)
+
 
 import data_generators
 import train_model
