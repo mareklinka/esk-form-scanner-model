@@ -14,6 +14,18 @@
 
 ----
 
+### Previously... the problem
+
+_Given a photo of a vehicle registration certificate, I want to know the coordinates of a bounding box containing the whole matriculation number and nothing else_
+
+----
+
+### Previously... the problem
+
+![](images/certificate_example.png)
+
+----
+
 ### Previously... the model
 
 * Input: 1200x847 resolution RGB images
@@ -81,7 +93,7 @@
 ### Problem 2 - Single training example
 
 * Generating training data from a single example is basically useless
-    * It allows the network to learn the specific content
+    * It allows the network to learn specific content
     * This prevents generalization to real data
     * Applying random noise can help, but the impact is limited
 
@@ -101,6 +113,12 @@
 
 * Sometimes the network fails to generalize properly
 * Sometimes validation set performance fluctuates, sometimes it plateaus
+
+----
+
+### Problem 3 - Desired state
+
+![](images/loss_chart.png)
 
 
 ----
@@ -138,8 +156,8 @@
 
 * It's better to start from a small network
 * First train to overfit, then deal with the overfitting
-    * Overfitting means your network is large enough to learn the function
-    * If you start from a small network, you will have the smallest possible network able to learn the function
+    * Overfitting means your network is large enough to learn the sought-after function
+    * If you start from a small network, you will have the smallest possible network able to learn this function
 * Train for a large number of epochs
 
 ----
@@ -154,15 +172,53 @@
 
 ### Solution 4 - Results
 
-* Parameter count:
-    * 52m vs 0.1m
-* Training examples:
-    * 1600 vs 2400
-* Epoch time:
-    * 100s vs 20s
-* Model size:
-    * 600MB vs 1.2MB
-* Validation loss:
-    * 4 (0.5%) vs 2 (0.5%)
-* Prediction time:
-    * 15ms (650ms on CPU) vs 7ms (20ms on CPU)
+* Parameter count: 52m vs 0.1m
+* Training examples: 1600 vs 2400
+* Epoch time: 100s vs 20s
+* Model size: 600MB vs 1.2MB
+* Validation loss: 4 (0.5%) vs 2 (0.5%)
+* Prediction time: 15ms (650ms on CPU) vs 7ms (20ms on CPU)
+
+---
+
+### Bringing it to production
+
+----
+
+### From a model to a service
+
+* Our model is small
+* It's accuracy is satisfactory
+* It performs well on both CPU and GPU
+* However, it's still just a file on a PC
+    * And some python code
+
+----
+
+### Operationalization - Options
+
+* There are several options on how to pack and deploy the model
+    * Use Flask to create a python web service
+    * Use docker
+    * Create the service in a language with python bindings
+    * "THE CLOUD"
+
+----
+
+### Operationalization - Azure
+
+* We can build the service using Flask and deploy to a VM
+* We can use Azure App Service
+* We can use Docker and deploy to a Kubernetes cluster
+* Azure Machine Learning Workbench
+
+----
+
+### AMLW
+
+* A new (preview) service for operationalizing ML models
+    * Takes a model (even pre-trained)
+    * Constructs a Docker image
+    * Deploys the image to Azure Container Registry
+    * Allows us to test locally
+    * Allows us to deploy to Kubernetes easily
