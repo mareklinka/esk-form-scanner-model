@@ -14,7 +14,7 @@
 ### We want to do...
 
 1. A guy comes to us with a vehicle registration certificate
-2. We take a picture of the document using your phone/tablet
+2. We take a picture of the document using our phone/tablet
 3. We want to do OCR on the document, but only on a specific field
 4. This piece of info is then pre-filled in our application
 
@@ -53,16 +53,6 @@
 
 ## Machine learning to the rescue!
 -----
-
-----
-
-### Why choose ML for this task?
-
-* Machine learning models are great for
-    * Solving complex problems
-    * Handling noisy/highly-variable data
-    * Extrapolating to new data
-    * Adapting to change
 
 ----
 
@@ -180,4 +170,9 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 ---
 
 ## Examples
+-----
+
+---
+
+## Q&A
 -----
