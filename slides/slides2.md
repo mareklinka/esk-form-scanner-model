@@ -1,4 +1,6 @@
 ## ML for Document Scanning
+-----
+
 ### Optimization and deployment
 
 ##### _by Marek Linka_
@@ -6,11 +8,7 @@
 ---
 
 ### Previously on this session...
-
-* The problem statement
-* The issues with traditional solutions
-* The problems with data
-* A working model
+-----
 
 ----
 
@@ -46,7 +44,8 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 
 ---
 
-## Moving forward
+### Moving forward
+-----
 
 ----
 
@@ -182,6 +181,7 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 ---
 
 ### Bringing it to production
+-----
 
 ----
 
@@ -199,7 +199,7 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 
 * There are several options on how to pack and deploy the model
     * Use Flask to create a python web service
-    * Use docker
+    * Use Docker
     * Create the service in a language with python bindings
     * "THE CLOUD"
 
@@ -210,7 +210,7 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
 * We can build the service using Flask and deploy to a VM
 * We can use Azure App Service
 * We can use Docker and deploy to a Kubernetes cluster
-* Azure Machine Learning Workbench
+* _Azure Machine Learning Workbench_
 
 ----
 
@@ -222,3 +222,47 @@ _Given a photo of a vehicle registration certificate, I want to know the coordin
     * Deploys the image to Azure Container Registry
     * Allows us to test locally
     * Allows us to deploy to Kubernetes easily
+
+----
+
+### AMLW - How To
+
+* Microsoft published the required tools via Python's PIP
+* Steps:
+    * Create Azure ML experimentation account with model management
+    * Register the model files with Azure
+    * Describe the desired API interface for the model
+    * Prepare a _score.py_ file invoking the model
+    * Pack everything into a Docker image
+
+----
+
+### AMLW - Deployments
+
+* Once a Docker image is ready, we have options
+    * Pull and test locally
+    * Provision an AKS instance and deploy the image there
+        * We can choose any machine size we desire, except for B
+        * This gives us single click and rule based scaling
+
+----
+
+### AMLW - Pricing
+
+* Up to testing the images locally, everything is _almost_ free
+    * We only pay storage for the images
+* K8s deployment costs at least two virtual machines
+    * Plus everything the machines need (network, load balancer etc.)
+
+----
+
+### AMLW - The bottom line
+
+* AMLW is interesting for production grade deployments and management
+* We could come up with a cheaper solution, but with more manual work
+* Other cloud providers offer similar services as well
+
+---
+
+### Q&A
+-----
