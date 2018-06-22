@@ -19,6 +19,7 @@ def train(trainig_data_path):
     """
 
     model = Sequential()
+    
     model.add(Conv2D(16, (5, 5), strides=(2,2), input_shape=(c.image_height, c.image_width, 3),kernel_regularizer=regularizers.l2(0.001)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
